@@ -3,6 +3,7 @@ project(ipa_room_exploration)
 
 # build with c++11
 add_compile_options(-std=c++11)
+set(CMAKE_CXX_STANDARD 11)
 
 set(catkin_RUN_PACKAGES
 	angles
@@ -39,7 +40,7 @@ generate_dynamic_reconfigure_options(
 	cfg/CoverageMonitor.cfg
 )
 
-find_package(OpenCV REQUIRED)
+find_package(OpenCV 3.2.0 REQUIRED) #compiled when provided version number. 3.2.0
 find_package(Boost REQUIRED COMPONENTS system chrono thread)
 
 find_package(Eigen3)

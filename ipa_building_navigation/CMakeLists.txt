@@ -3,6 +3,7 @@ project(ipa_building_navigation)
 
 # build with c++11
 add_compile_options(-std=c++11)
+set(CMAKE_CXX_STANDARD 11)
 
 set(catkin_RUN_PACKAGES
 	actionlib
@@ -29,7 +30,7 @@ generate_dynamic_reconfigure_options(
 	cfg/BuildingNavigation.cfg
 )
 
-find_package(OpenCV REQUIRED)
+find_package(OpenCV 3.2.0 REQUIRED) #compiled when provided version number. 3.2.0
 find_package(Boost REQUIRED COMPONENTS system thread chrono)
 
 ###################################
@@ -83,7 +84,7 @@ add_library(tsp_solvers
 )
 target_link_libraries(tsp_solvers
 	${catkin_LIBRARIES}
-	${OpenCV_LIBRARIES}
+	${OpenCV_LIBS}
 	${Boost_LIBRARIES}
 )
 add_dependencies(tsp_solvers
@@ -99,7 +100,7 @@ add_library(${PROJECT_NAME} STATIC
 )
 target_link_libraries(${PROJECT_NAME}
 	${catkin_LIBRARIES}
-	${OpenCV_LIBRARIES}
+	${OpenCV_LIBS}
 	${Boost_LIBRARIES}
 )
 add_dependencies(${PROJECT_NAME}
@@ -115,7 +116,7 @@ target_link_libraries(room_sequence_planning_server
 	tsp_solvers
 	${PROJECT_NAME}
 	${catkin_LIBRARIES}
-	${OpenCV_LIBRARIES}
+	${OpenCV_LIBS}
 	${Boost_LIBRARIES}
 )
 add_dependencies(room_sequence_planning_server
@@ -128,7 +129,7 @@ add_dependencies(room_sequence_planning_server
 add_executable(room_sequence_planning_client ros/src/room_sequence_planning_action_client.cpp)
 target_link_libraries(room_sequence_planning_client
 	${catkin_LIBRARIES} 
-	${OpenCV_LIBRARIES}
+	${OpenCV_LIBS}
 )
 add_dependencies(room_sequence_planning_client ${catkin_EXPORTED_TARGETS} ${${PROJECT_NAME}_EXPORTED_TARGETS})
 
@@ -140,7 +141,7 @@ add_executable(room_sequence_planning_evaluation
 )
 target_link_libraries(room_sequence_planning_evaluation
 	${catkin_LIBRARIES}
-	${OpenCV_LIBRARIES}
+	${OpenCV_LIBS}
 )
 add_dependencies(room_sequence_planning_evaluation ${catkin_EXPORTED_TARGETS} ${${PROJECT_NAME}_EXPORTED_TARGETS})
 
@@ -151,7 +152,7 @@ add_executable(TSP_evaluation
 target_link_libraries(TSP_evaluation
 	tsp_solvers
 	${catkin_LIBRARIES}
-	${OpenCV_LIBRARIES}
+	${OpenCV_LIBS}
 )
 add_dependencies(TSP_evaluation ${catkin_EXPORTED_TARGETS} ${${PROJECT_NAME}_EXPORTED_TARGETS})
 

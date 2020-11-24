@@ -8,11 +8,11 @@
 # 7 = voronoi explorator
 # 8 = boustrophedon variant explorator
 # int
-room_exploration_algorithm: 8
+room_exploration_algorithm: 2 #8
 
 # display final trajectory plan step by step
 # bool
-display_trajectory: false
+display_trajectory: true #false
 
 
 # map correction
